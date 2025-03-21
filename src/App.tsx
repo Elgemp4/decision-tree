@@ -98,7 +98,7 @@ function App() {
     script: YAMLData["script"]
   ): Node[] => {
     const LEVEL_HEIGHT = 300;
-    const LEVEL_WIDTH = 500;
+    const LEVEL_WIDTH = 700;
 
     const levelCounts = new Map<number, number>();
     nodeData.forEach((node) => {

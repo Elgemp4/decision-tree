@@ -25,6 +25,7 @@ const CustomNode = ({
     >
       <Handle
         type="target"
+        className="bg-slate-800 p-1 border-2 rounded-full"
         position={Position.Top}
         isConnectable={isConnectable}
       />
@@ -62,6 +63,7 @@ const CustomNode = ({
       <Handle
         type="source"
         position={Position.Bottom}
+        className="bg-slate-800 p-1 border-2 rounded-full"
         isConnectable={isConnectable}
       />
     </div>

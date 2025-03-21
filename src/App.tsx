@@ -13,14 +13,14 @@ import ReactFlow, {
 } from "reactflow";
 import "reactflow/dist/style.css";
 import { parse, stringify } from "yaml";
-import CustomNode from "./components/CustomNode";
+import CustomNode from "./components/Chart/CustomNode";
 import Sidebar from "./components/Sidebar";
 import NodeModal from "./components/NodeModal";
 import { loadFunctionConfig } from "./utils/config";
 import type { YAMLData } from "./types";
 import type { FunctionConfig } from "./utils/config";
 
-import CustomEdge from "./components/CustomEdge";
+import CustomEdge from "./components/Chart/CustomEdge";
 
 const nodeTypes = {
   custom: CustomNode,
@@ -284,7 +284,6 @@ function App() {
           allowedFunctions[key] = value;
         }
       });
-
       yamlData.script[node.id] = {
         prompt: node.data.prompt,
         allowed_functions:
@@ -292,10 +291,12 @@ function App() {
             ? allowedFunctions
             : undefined,
         use_stt: node.data.useSTT,
-        links: nodeEdges.map((edge) => ({
-          next_step: edge.target,
-          ...(edge.label?.toString() && { condition: edge.label.toString() }),
-        })),
+        links: nodeEdges.map((edge) => {
+          return {
+            next_step: edge.target,
+            condition: edge.data?.label,
+          };
+        }),
       };
     });
 

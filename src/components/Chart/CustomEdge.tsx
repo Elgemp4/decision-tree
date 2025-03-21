@@ -15,6 +15,7 @@ const CustomEdge: FC<EdgeProps<Edge<{ label: string }>>> = ({
   targetY,
   sourcePosition,
   targetPosition,
+  markerEnd,
   source,
   target,
   data,
@@ -44,7 +45,7 @@ const CustomEdge: FC<EdgeProps<Edge<{ label: string }>>> = ({
 
   return (
     <>
-      <BaseEdge id={id} path={edgePath} markerEnd="arrowclosed" />
+      <BaseEdge id={id} path={edgePath} markerEnd={markerEnd} />
       <EdgeLabelRenderer>
         <div
           style={{

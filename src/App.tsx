@@ -34,8 +34,8 @@ const defaultEdgeOptions = {
   type: "custom",
   markerEnd: {
     type: MarkerType.ArrowClosed,
-    width: 20,
-    height: 20,
+    width: 35,
+    height: 35,
   },
   style: {
     strokeWidth: 2,
@@ -58,11 +58,9 @@ function App() {
   const [functionConfig, setFunctionConfig] = useState<FunctionConfig | null>(
     null
   );
-  console.log(edges);
   useEffect(() => {
     loadFunctionConfig().then((result) => {
       setFunctionConfig(result);
-      console.log(result);
     });
   }, []);
 
@@ -115,8 +113,6 @@ function App() {
 
       const x = (nodeIndexAtLevel - (levelCount - 1) / 2) * LEVEL_WIDTH;
       const y = node.level * LEVEL_HEIGHT;
-      console.log(node.id);
-      console.log(script);
       const scriptNode = script[node.id];
       const allowedFunctions = scriptNode.allowed_functions
         ? Object.entries(scriptNode.allowed_functions).map(
@@ -124,7 +120,6 @@ function App() {
           )
         : [];
 
-      console.log("Allo ?");
       return {
         id: node.id,
         type: "custom",
@@ -161,6 +156,8 @@ function App() {
         type: "custom",
         markerEnd: {
           type: MarkerType.ArrowClosed,
+          width: 35,
+          height: 35,
         },
       };
       setEdges((eds) => addEdge(newEdge, eds));
@@ -252,6 +249,8 @@ function App() {
                 type: "custom",
                 markerEnd: {
                   type: MarkerType.ArrowClosed,
+                  width: 35,
+                  height: 35,
                 },
               });
             }
@@ -285,7 +284,7 @@ function App() {
           allowedFunctions[key] = value;
         }
       });
-      console.log(node.data.title);
+
       yamlData.script[node.data.title] = {
         prompt: node.data.prompt,
         allowed_functions:

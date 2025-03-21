@@ -81,7 +81,6 @@ const NodeModal: React.FC<NodeModalProps> = ({
       .filter((pair) => pair.key.trim())
       .map((pair) => (pair.value ? `${pair.key}: ${pair.value}` : pair.key));
 
-    console.log(formData);
     onSave({
       previousTitle: data.title,
       ...formData,

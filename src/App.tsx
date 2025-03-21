@@ -115,7 +115,8 @@ function App() {
 
       const x = (nodeIndexAtLevel - (levelCount - 1) / 2) * LEVEL_WIDTH;
       const y = node.level * LEVEL_HEIGHT;
-
+      console.log(node.id);
+      console.log(script);
       const scriptNode = script[node.id];
       const allowedFunctions = scriptNode.allowed_functions
         ? Object.entries(scriptNode.allowed_functions).map(
@@ -181,8 +182,8 @@ function App() {
     useSTT: boolean;
     allowedFunctions: string[];
   }) => {
-    setNodes((nds) =>
-      nds.map((node) =>
+    setNodes((nds) => {
+      return nds.map((node) =>
         node.id === selectedNode
           ? {
               ...node,
@@ -193,8 +194,8 @@ function App() {
               },
             }
           : node
-      )
-    );
+      );
+    });
   };
 
   const handleEdgeClick = (event: React.MouseEvent, edge: Edge) => {
@@ -284,7 +285,8 @@ function App() {
           allowedFunctions[key] = value;
         }
       });
-      yamlData.script[node.id] = {
+      console.log(node.data.title);
+      yamlData.script[node.data.title] = {
         prompt: node.data.prompt,
         allowed_functions:
           Object.keys(allowedFunctions).length > 0
@@ -293,7 +295,7 @@ function App() {
         use_stt: node.data.useSTT,
         links: nodeEdges.map((edge) => {
           return {
-            next_step: edge.target,
+            next_step: nodes.find((node) => node.id == edge.target)?.data.title,
             condition: edge.data?.label,
           };
         }),

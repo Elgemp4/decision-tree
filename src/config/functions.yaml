@@ -1,0 +1,5 @@
+allowed_functions:
+  ChangeStepPlugin: change_step
+  DataExtractionPlugin: define_user_data
+  RAGPlugin: information_retrieval
+  RedirectionPlugin: redirection_call

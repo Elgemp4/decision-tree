@@ -60,7 +60,10 @@ function App() {
   );
   console.log(edges);
   useEffect(() => {
-    loadFunctionConfig().then(setFunctionConfig);
+    loadFunctionConfig().then((result) => {
+      setFunctionConfig(result);
+      console.log(result);
+    });
   }, []);
 
   const calculateNodeLevels = (

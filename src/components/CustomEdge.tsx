@@ -42,8 +42,6 @@ const CustomEdge: FC<EdgeProps<Edge<{ label: string }>>> = ({
     labelY = sourceY + (targetY - sourceY) * 0.5;
   }
 
-  console.log(data?.label);
-
   return (
     <>
       <BaseEdge id={id} path={edgePath} markerEnd="arrowclosed" />
